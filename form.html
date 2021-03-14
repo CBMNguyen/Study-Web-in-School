@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Country Love</title>
+</head>
+<body>
+  <h1 style="text-align: center; text-transform: uppercase;">Bình chọn thành phố yêu thích</h1>
+  <form action="#" name="country" method="post" style="border: 1px solid black; width: 575px; margin: 0 auto; padding: 20px;">
+    <label>Họ tên:</label>
+    <input type="text" name="hoten" value="">
+    <br />
+    <label>Phái</label>
+    <input type="radio" name="phai" value="nam"> Nam
+    <input type="radio" name="phai" value="nữ"> Nữ
+    <br />Chọn Địa Điểm: 
+    <br><input type="checkbox" name="diadiem" value="Hà Nội"> Hà Nội
+    <br><input type="checkbox" name="diadiem" value="Nha Trang"> Nha Trang
+    <br><input type="checkbox" name="diadiem" value="TP HCM"> TP HCM
+    <br><input type="checkbox" name="diadiem" value="Cần Thơ"> Cần Thơ
+    <br /> Thành Phố Yêu Thích Nhất: 
+    <select name="fvr_country" id="fvr-country">
+      <option value="Hà Nội" selected>Hà Nội</option>
+      <option value="Nha Trang">Nha Trang</option>
+      <option value="TP HCM">TP HCM</option>
+      <option value="Cần Thơ">Cần Thơ</option>
+    </select>
+    <br /> <br />
+    <input type="button" name="button" onclick="vote()" value="Bình Chọn">
+  </form>
+  <div style="border: 1px solid black; width: 575px; margin: 10px auto; padding: 20px;">
+    Kết Quả: 
+    <p id="list"></p>
+  </div>
+  <script>
+    function vote(){
+      var countryForm = document.country; // form reference
+      var list = document.getElementById('list') // list reference
+
+      var hoten = countryForm.hoten.value; // get name
+      var phai = '';
+      var diadiem = '';
+      var fvr_country = '';
+
+      for(var i = 0; i < countryForm.phai.length; i++){
+        if(countryForm.phai[i].checked){
+          phai = countryForm.phai[i].value; break; // get phai
+        }
+      }
+
+      for(var i = 0; i < countryForm.diadiem.length; i++){
+        if(countryForm.diadiem[i].checked){
+          diadiem += countryForm.diadiem[i].value + ' | '; // loop to get place 
+        }
+      }
+      fvr_country = countryForm.fvr_country.value;
+      var content = hoten + ' (' + phai + ')' + '<br />' + 'TP yêu thích: ' + diadiem + '<br />' + 'TP thích nhất: ' + fvr_country; // combine data
+      list.innerHTML = content;
+    }
+  </script>
+</body>
+</html>
